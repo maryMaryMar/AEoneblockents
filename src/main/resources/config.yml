@@ -1,0 +1,79 @@
+# ==============================================================================
+#                 CONFIGURACIÓN ADMINISTRATIVA: AEONEBLOCKENTS
+#                  Eventos Dinámicos y Desafíos para OneBlock
+# ==============================================================================
+
+settings:
+  auto-scheduler-enabled: true
+  interval-minutes: 45
+  min-players-required: 1
+  disabled-worlds:
+    - "spawn"
+    - "lobby"
+
+events:
+  # ----------------------------------------------------------------------------
+  # 🌧️ Lluvia Ácida: Daño ambiental a la intemperie
+  # ----------------------------------------------------------------------------
+  acid_rain:
+    display-name: "🌧️ Lluvia Ácida"
+    duration-seconds: 180
+    damage: 1.0                    # Daño aplicado (1.0 = medio corazón, 2.0 = 1 corazón)
+    damage-interval-seconds: 1     # Frecuencia en SEGUNDOS a la que se aplica el daño (1s = daño cada segundo)
+    bypass-armor: true             # Si es true, ignora reducción física de armadura y no desgasta durabilidad
+    protect-in-claims: false       # false = la lluvia afecta a las islas de OneBlock; true = inmunidad en reclamos
+
+  # ----------------------------------------------------------------------------
+  # 🩸 Luna de Sangre: Invasión nocturna periódica
+  # ----------------------------------------------------------------------------
+  blood_moon:
+    display-name: "🩸 Luna de Sangre"
+    trigger-mode: "DAY_INTERVAL"   # "DAY_INTERVAL" (cada N días de juego) o "RANDOM"
+    day-interval: 10               # Cada 10 días de Minecraft (240,000 ticks)
+    duration-seconds: 300
+    prevent-sleep: true            # Bloquea el uso de camas durante el evento
+    atmosphere:
+      sound: true
+      bossbar: true
+      particles: true
+    mob-spawning:
+      enabled: true
+      interval-seconds: 10         # Frecuencia de oleadas en segundos
+      min-radius: 4                # Radio mínimo de spawn cerca del jugador
+      max-radius: 12               # Radio máximo de spawn en la isla
+      max-mobs-per-player: 4       # Límite máximo de mobs vivos simultáneos por jugador
+      creeper-anti-grief: true     # Si es true, los creepers dañan jugadores pero no rompen bloques
+      allow-phantoms: true         # Permite Phantoms aéreos acechando la isla
+      phantom-chance: 0.25         # Probabilidad de generar Phantoms (0.25 = 25%)
+    mob-buffs:
+      speed-amplifier: 1           # Nivel de poción Velocidad (0 = Speed I, 1 = Speed II)
+      strength-amplifier: 0        # Nivel de poción Fuerza (0 = Strength I, -1 = Desactivado)
+      health-multiplier: 1.5       # Multiplicador de vida máxima (1.5 = +50% de vida)
+      damage-multiplier: 1.5       # Multiplicador de daño de ataque cuerpo a cuerpo (1.5 = +50% de daño)
+      skeleton-max-arrow-damage: 4.5 # Daño máximo de flechas de esqueletos de evento (mitiga knockback al vacío)
+
+  # ----------------------------------------------------------------------------
+  # 🌙 Luna de Suerte: Bonificaciones mineras en OneBlock
+  # ----------------------------------------------------------------------------
+  lucky_mining:
+    display-name: "🌙 Luna de Suerte"
+    duration-seconds: 300
+    trigger-chance: 1.0            # Probabilidad de activar bonus al picar mineral (1.0 = 100%, 0.8 = 80%)
+    multiplier: 4                  # Multiplicador de drops (x4)
+    bonus-diamonds: 2              # Cantidad de diamantes extra al rodar bonus
+    bonus-diamonds-chance: 0.50    # 50% de probabilidad de dar diamantes extra, 50% de dar x4 en drop
+    anti-exploit:
+      anti-silk-touch: true        # Evita abusos con Toque de Seda
+      track-placed-blocks: true    # Bloques colocados artificialmente no generan bonus
+
+  # ----------------------------------------------------------------------------
+  # 🌾 Cosecha con Suerte: Rendimiento agrícola aumentado
+  # ----------------------------------------------------------------------------
+  lucky_harvest:
+    display-name: "🌾 Cosecha con Suerte"
+    duration-seconds: 300
+    trigger-chance: 1.0            # Probabilidad de bonus al cosechar cultivos maduros (1.0 = 100%)
+    multiplier: 3                  # Multiplicador de cultivos cosechados (x3)
+    auto-replant: true             # Replantado automático inmediato en la tierra de cultivo
+    bonus-crop-chance: 0.35        # Probabilidad de drop extra adicional (0.35 = 35%)
+    bonus-crop-amount: 2           # Cantidad de items extra adicionales

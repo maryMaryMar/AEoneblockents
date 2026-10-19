@@ -1,0 +1,17 @@
+name: AEoneblockents
+version: 1.0.0
+main: com.tuplugin.aeoneblockents.DynamicEventsPlugin
+api-version: '1.21'
+author: Brayita
+description: Eventos dinámicos y climáticos especializados para OneBlock (Paper 1.21.x)
+softdepend:
+  - GriefPrevention
+  - WorldGuard
+  - BentoBox
+
+commands:
+  aeoneblockents:
+    description: Comando de administración de AEoneblockents
+    permission: aeoneblockents.admin
+    aliases: [aeo, aeevents]
+    usage: /<command> [start|stop|status|reload|flag]
